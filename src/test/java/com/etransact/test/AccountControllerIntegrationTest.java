@@ -32,7 +32,7 @@ class AccountControllerIntegrationTest {
     @Test
     //Test to get an account
     public void testGetAccountSuccess() {
-        ResponseEntity<Account> response = testRestTemplate.withBasicAuth("gentest", "genTest123$").
+        ResponseEntity<Account> response = testRestTemplate.withBasicAuth("user", "user").
                 getForEntity(accountURL + "/1", Account.class);
         Assertions.assertEquals(response.getStatusCode(), HttpStatus.OK);
         Assertions.assertNotNull(response);
@@ -43,7 +43,7 @@ class AccountControllerIntegrationTest {
     @Test
     //Test to get a non existing account 
     public void testGetAccountFail() {
-        ResponseEntity<String> response = testRestTemplate.withBasicAuth("gentest", "genTest123$").
+        ResponseEntity<String> response = testRestTemplate.withBasicAuth("user", "user").
                 getForEntity(accountURL + "/-5", String.class);
         Assertions.assertEquals(response.getStatusCode(), HttpStatus.NOT_FOUND);
     }
@@ -54,7 +54,7 @@ class AccountControllerIntegrationTest {
 
         Account account = new Account();
         account.setAccount_name("Savings account");
-        ResponseEntity response = testRestTemplate.withBasicAuth("gentest", "genTest123$").
+        ResponseEntity response = testRestTemplate.withBasicAuth("user", "user").
                 postForEntity(accountURL, account, null);
         Assertions.assertEquals(response.getStatusCode(), HttpStatus.OK);
 //        Assertions.assertNotNull(response);

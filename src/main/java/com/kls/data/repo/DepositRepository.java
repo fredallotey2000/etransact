@@ -4,11 +4,9 @@
  */
 package com.kls.data.repo;
 
-import com.kls.data.Account;
 import com.kls.data.Deposit;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -18,17 +16,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface DepositRepository extends JpaRepository<Deposit, Long> {
    
-    @Query(
-            value = "select \n"
-            + "sch.name as sch_name,\n"
-            + "c.name as class_name,\n"
-            + "st.name as status_name,\n"
-            + "s.* \n"
-            + "from students s\n"
-            + "left outer join classes c on (s.class_id = c.class_id) \n"
-            + "left outer join schools sch on (s.sch_id = sch.sch_id) \n"
-            + "left outer join statuses st on (s.status_id = st.status_id) WHERE s.stud_id = ?1",
-            nativeQuery = true)
+
     Deposit getDeposit(Long depositId);
 
 }

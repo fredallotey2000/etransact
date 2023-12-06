@@ -5,8 +5,10 @@
 package com.kls.controller;
 
 import com.kls.data.Deposit;
+import com.kls.data.User;
 import com.kls.service.DepositService;
 import java.util.Map;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +29,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class DepositController {
 
     private final DepositService depositService;
+    //authenticated user to be used in user authorization for web resources
+    @Autowired
+    User user;
 
     public DepositController(DepositService depositService) {
         this.depositService = depositService;

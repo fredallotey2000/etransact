@@ -35,9 +35,9 @@ public class AccountService {
     }
 
     //Method to get a history
-    public  List<Transactions> getAccountHistory(long id) {
+    public  List<Transactions> getAccountHistory(String accountNumber) {
          List<Transactions> transactions = null;
-        transactions = transactionsRepository.getTransactions(id);
+        transactions = transactionsRepository.getTransactions(accountNumber);
         return transactions;
     }
 

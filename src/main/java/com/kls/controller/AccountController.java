@@ -31,6 +31,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class AccountController {
 
     private final AccountService accountService;
+    
+    //authenticated user to be used in user authorization for web resources
     @Autowired
     User user;
 
@@ -58,7 +60,7 @@ public class AccountController {
             produces = {MediaType.APPLICATION_JSON_VALUE})
     @ResponseBody
     //Method to get account balance
-    public ResponseEntity getAccountHistory(@PathVariable Long accountId) {
+    public ResponseEntity getAccountHistory(@PathVariable String accountId) {
         List<Transactions> Transactions = accountService.getAccountHistory(accountId);
         if (Transactions == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No transactions found for Id " + accountId);
